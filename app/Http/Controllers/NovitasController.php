@@ -8,6 +8,7 @@ use App\Models\Novita;
 use App\Models\Page;
 use App\Models\Social;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NovitasController extends Controller
 {
@@ -22,8 +23,8 @@ class NovitasController extends Controller
         $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('link', 'title')->toArray();
-        $news = Novita::latest()->take(10)->get()->toArray();
+        $midmenu = Midmenu::orderby('item_order')->pluck( 'title', 'link');
+        $news = DB::table('Novitas')->simplePaginate(15);
         return view('layouts.default.news')->with([
             'news' => $news,
             'topmenu' => $topmenu,

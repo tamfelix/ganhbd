@@ -44,5 +44,13 @@ Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::get('/eduplan', 'PagesController@history')->name('eduplan');
 Route::get('/extras', 'PagesController@history')->name('extras');
 Route::get('/projects', 'PagesController@history')->name('projects');
+Route::get('/moodlelogin', 'PagesController@moodleLogin')->name('moodlelogin');
+
+Route::post('/moodle', 'PagesController@moodle')->name('moodle');
 
 Route::resource('/novitas', 'NovitasController');
+Route::resource('/messages', 'MessagesController');
+Route::resource('/candidates', 'CandidatesController');
+Route::resource('/students', 'StudentsController');
+Route::resource('/teachers', 'TeachersController');
+Route::resource('/infos', 'InfosController');

@@ -25,9 +25,10 @@ class CandidatesController extends Controller
     public function enroll()
     {
         $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('link', 'title')->toArray();
+        $midmenu = Midmenu::orderby('item_order')->pluck( 'title', 'link');
         $text = Page::where('id',5)->pluck('content')->toArray();
         return view ('layouts.default.enroll')->with([
             'topmenu' => $topmenu,
@@ -35,6 +36,7 @@ class CandidatesController extends Controller
             'contact' => $contact,
             'midmenu' => $midmenu,
             'text' => $text,
+            'sidemenu' => $sidemenu,
         ]);
     }
     /**

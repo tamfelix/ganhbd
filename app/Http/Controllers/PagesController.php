@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Contact;
 use App\Models\Midmenu;
 use App\Models\Novita;
@@ -17,13 +18,12 @@ class PagesController extends Controller
     $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
     $socials = Social::orderby('icon_order')->get()->toArray();
     $contact = Contact::where('id', 1)->get()->toArray();
-    $midmenu = Midmenu::orderby('item_order')->pluck('link', 'title')->toArray();
+    $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
 
     $news = Novita::latest()->take(5)->get()->toArray();
     $teachers = Teacher::orderBy('surname')->get()->toArray();
-
-    //echo '<pre>';
-    //print_r($midmenu[0]);
+   //echo '<pre>';
+    //print_r($midmenu);
     return view('layouts.default.main')->with([
         'topmenu' => $topmenu,
         'sidemenu' => $sidemenu,
@@ -32,6 +32,8 @@ class PagesController extends Controller
         'midmenu' => $midmenu,
         'news' => $news,
         'teachers' => $teachers,
+
+
 
 
     ]);
@@ -43,7 +45,7 @@ class PagesController extends Controller
         $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('link', 'title')->toArray();
+        $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
         $about = Page::find(1)->pluck('content')->toArray();
 
         //print_r($about);
@@ -64,7 +66,7 @@ class PagesController extends Controller
         $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('link', 'title')->toArray();
+        $midmenu = Midmenu::orderby('item_order')->pluck( 'title', 'link');
         $history = Page::find(1)->pluck('content')->toArray();
         //print_r($about);
         return view('layouts.default.history')->with([
@@ -84,7 +86,7 @@ class PagesController extends Controller
         $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('link', 'title')->toArray();
+        $midmenu = Midmenu::orderby('item_order')->pluck('title','link');
         $advantages = Page::where('id',2)->pluck('content')->toArray();
         //print_r($topmenu);
         return view('layouts.default.advantages')->with([
@@ -104,7 +106,7 @@ class PagesController extends Controller
         $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('link', 'title')->toArray();
+        $midmenu = Midmenu::orderby('item_order')->pluck('title','link', );
         $program = Page::where('id',3)->pluck('content')->toArray();
         //print_r($topmenu);
         return view('layouts.default.program')->with([
@@ -123,7 +125,7 @@ class PagesController extends Controller
         $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('link', 'title')->toArray();
+        $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
         $fees = Page::where('id',6)->pluck('content')->toArray();
         //print_r($topmenu);
         return view('layouts.default.fees')->with([
@@ -142,7 +144,7 @@ class PagesController extends Controller
         $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('link', 'title')->toArray();
+        $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
         $text = Page::where('id',7)->pluck('content')->toArray();
         //print_r($topmenu);
         return view('layouts.default.partners')->with([
@@ -162,7 +164,7 @@ class PagesController extends Controller
         $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('link', 'title')->toArray();
+        $midmenu = Midmenu::orderby('item_order')->pluck( 'title', 'link');
         $text = Page::where('id',9)->pluck('content')->toArray();
         //print_r($topmenu);
         return view('layouts.default.suppliers')->with([
@@ -182,10 +184,11 @@ class PagesController extends Controller
         $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('link', 'title')->toArray();
+        $midmenu = Midmenu::orderby('item_order')->pluck( 'title','link');
         $text = Page::where('id', 16)->pluck('content')->toArray();
 
         //print_r($text);
+
         return view('layouts.default.contact')->with([
             'topmenu' => $topmenu,
             'socials' => $socials,
@@ -197,6 +200,14 @@ class PagesController extends Controller
 
         ]);
     }
+
+    public function moodleLogin(LoginRequest $request){
+        $request->authenticate();
+
+
+        return redirect()->back()->with('success', 'logged-in successfully');
+    }
+
 
 
 }

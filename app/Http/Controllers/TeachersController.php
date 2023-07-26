@@ -20,9 +20,10 @@ class TeachersController extends Controller
         $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('link', 'title')->toArray();
+        $midmenu = Midmenu::orderby('item_order')->pluck( 'title', 'link');
         $text = Page::where('id',3)->pluck('content')->toArray();
         $teachers = Teacher::orderby('surname')->get()->toArray();
+        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
         //print_r($topmenu);
         return view('layouts.default.teachers')->with([
             'topmenu' => $topmenu,
@@ -31,6 +32,7 @@ class TeachersController extends Controller
             'midmenu' => $midmenu,
             'text' => $text,
             'teachers' => $teachers,
+            'sidemenu' => $sidemenu,
 
         ]);
     }

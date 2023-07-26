@@ -148,15 +148,19 @@
                             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                         </svg></div>
 
-                        <a href="{{url('novitas')}}"><li class="px-3">news</li></a>
-                        @foreach($midmenu as $mid => $a)
-                            <a class=" mx-3"  href="#" role ="btn" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{$mid}}<i class="fa fa-angle-down mx-1"></i>
+                        <li class="px-3"><a href="{{url('novitas')}}">news</a></li>
+
+                        @foreach($midmenu as $menu => $number)
+                        <li><a class=" mx-3"  href="#" role ="btn" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{$number}}<i class="fa fa-angle-down mx-1"></i>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                {!! $a !!}
-                            </div>
-                        @endforeach
+
+
+                            <ul class="dropdown-menu mt-[11px] rounded-0" aria-labelledby="dropdownMenuLink">
+                                {!! $menu !!}
+                            </ul>
+                        </li>
+                    @endforeach
 
                 </ul>
     </nav>
@@ -197,14 +201,27 @@
                         </section>
 
 {{--                        MOODLE LOGIN--}}
-                        <section class=" bg-gray-50 text-[#2f506c] p-3 pt-[13px] pl-0 mt-4 h-[250px]">
-                            <a class="font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[13px] px-3">Moodle</a>
-                            <div class="pl-4">Login</div>
+                        <section class=" bg-gray-50 text-[#2f506c] p-3 pt-[14px] pl-0 mt-4 h-[250px]">
 
-                            <form class="m-4 flex flex-col justify-end">
-                                <input type="search" class="  h-[26px] w-26 m-2  text-grey-100 flex" content="login..."  >
-                                <input type="search" class="  h-[26px] w-26 m-2  text-grey-100 flex" content="password..."  >
-                                <input type="submit" value="sign in" class="bg-green-600 h-[26px] rounded text-xs  m-2 w-16 text-white">
+                                <a class="font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[15px] px-3 ">Moodle</a>
+
+                                <div class="flex inline-flex items-center ">
+                                    <div class="pl-4 m-0 ">Login</div>
+                                    <img src="{{env('APP_URL')}}\img\Moodle-Logo.png" class="w-20 h-auto mb-1 ">
+                                </div>
+
+
+
+                            <form class="mx-4  mt-0  flex flex-col justify-end" action="{{route('moodlelogin')}}" method="POST">
+                               @csrf
+                                @method('POST')
+                                <x-input id="login" content="login..." class=""></x-input>
+                                <x-input id="pwd" content="password..."  class="mt-2"></x-input>
+
+
+{{--                                <input type="text" id="login" class="  h-[26px] w-26 m-2  text-grey-100 flex"   >--}}
+{{--                                <input type="password" id="pwd" class="  h-[26px] w-26 m-2  text-grey-100 flex"  >--}}
+                                <x-green-button type="submit" value="sign in" class=""></x-green-button>
                             </form>
                         </section>
 
