@@ -5,13 +5,13 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0|^8.1",
+        "php": "^7.3|^8.0|^8.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5",
-        "moodle/moodle": "v4.2.0"
+        "laravel/tinker": "^2.5"
+
 
 
     },
@@ -70,9 +70,8 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://nova.laravel.com",
-            "type": "vcs",
-            "url": "https://github.com/moodle/moodle.git"
+            "url": "https://nova.laravel.com"
+
         }
     ]
 }

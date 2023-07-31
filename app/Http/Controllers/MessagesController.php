@@ -35,14 +35,14 @@ class MessagesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['surname'=>'min:2']);
-        $request->validate(['email'=>'min:7']);
-        $request->validate(['content'=>'min:7']);
-        //$data = $request->all();
-        //$message = new Message();
-        Message::create($request->all());
+//        $request->validate(['surname'=>'min:2']);
+//        $request->validate(['email'=>'min:7']);
+//        $request->validate(['content'=>'min:7']);
+
+        $message  = Message::create($request->all());
         //$message->save();
-        //dd($message);
+        //echo ('<pre>');
+        //print_r($message);
         return redirect()->back()->with('success', 'message sent');
     }
 

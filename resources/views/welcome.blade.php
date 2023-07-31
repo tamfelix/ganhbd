@@ -7,11 +7,9 @@
         <script src="https://kit.fontawesome.com/0ce84235fb.js" crossorigin="anonymous"></script>
 
 
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
 
         <title>Ecole Ohalei Menahem</title>
@@ -114,7 +112,7 @@
                 <div class="flex inline-flex w-[50%]  ">
                     <a href="{{ url('/') }}" class="">
                         @foreach($contact as $habad) @endforeach
-                        <img href="{{ $habad['photo']}}" class="h-16 w-24 pt-2 pl-8 pl-7" />
+                        <img href="/{{ $habad['photo']}}" class="h-16 w-24 pt-2 pl-8 pl-7" />
                         </a>
 
 
@@ -134,9 +132,9 @@
                             <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
                         </svg>
                         <p class="ml-2"><a href="mailto:{{$habad['email']}}"> {{$habad['email']}}</a></p>
-                    </p>
+                        </p>
+                    </div>
                 </div>
-
             </section>
     </nav>
 
@@ -164,25 +162,7 @@
 
                 </ul>
     </nav>
-{{--    BANNER--}}
 
-                <section class="max-w-6xl  px-8   bg-white  position-static mt-2">
-                    <img src="/app/ganhbd/public/img/slide-5.jpeg" class="w-[100%] h-auto pt-5 parent position-sticky">
-                    <div class="position-relative sopra0 font3 text-md">
-                        <p class=" h-[40px] w-[200px] bg-[#6091ba] text-white px-3 py-1.5  uppercase mb-1">Come to OPEN DAYS</p>
-                        <p class="bg-black h-[28px] px-3 text-white  opacity-75  w-[400px]">
-                            Discover our online resources on Moodle</p>
-                    </div>
-
-
-{{--MAIN SECTION        --}}
-
-
-{{--    first column    ABOUT            --}}
-    <main class="flex inline-flex w-full   ">
-
-
-{{--  second column MAIN CONTENT NEWS--}}
 
             @yield('content')
 
@@ -195,7 +175,7 @@
                                 @foreach($sidemenu as $side=>$link)
                                 <li class="py-1  inline-flex items-center "> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short mr-1" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                                        </svg><a href="{{$link}}">{{ucfirst($side)}}</a></li>
+                                        </svg><a href="{{url($link)}}">{{ucfirst($side)}}</a></li>
                                 @endforeach
                             </ul>
                         </section>
@@ -212,11 +192,13 @@
 
 
 
-                            <form class="mx-4  mt-0  flex flex-col justify-end" action="{{route('moodlelogin')}}" method="POST">
+                            <form class="mx-4  mt-0  flex flex-col justify-end" action="{{url('/mlogin')}}" method="POST" enctype="multipart/form-data">
                                @csrf
                                 @method('POST')
-                                <x-input id="login" content="login..." class=""></x-input>
-                                <x-input id="pwd" content="password..."  class="mt-2"></x-input>
+
+                                    <x-input name="login"  />
+                                    <x-input name="pwd" />
+{{--                                <x-login></x-login>--}}
 
 
 {{--                                <input type="text" id="login" class="  h-[26px] w-26 m-2  text-grey-100 flex"   >--}}
@@ -228,37 +210,104 @@
 
 {{--                        DIRECTORS DETAILS--}}
                         <section class=" bg-gray-50 text-[#2f506c] p-3 pt-[13px] pl-0 mt-4 h-[250px]">
-                            <a class="font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[13px] px-3 ">Direction</a>
-                            <div class="pl-4">Name Surname</div>
-                            <img src="" class="w-[160px] h-[120px] pl-4 pt-4">
-
+                            <a class="font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[15px] px-3 ">Direction</a>
+                            @foreach($director as $dir)
+                                <div class="pl-4">{{$dir['name']}} {{ $dir['surname']}}</div>
+                                <img src="{{env('APP_URL')}}/img/teachers/{{$dir['img']}}" class="w-[160px] h-auto pl-4 pt-4">
+                            @endforeach
                         </section>
                     </div>
                </main>
 
 
-                    <section class=" font3 text-[#2f506c] text-lg mt-8">
-                        <p class="border-t-2 border-[#6091ba] pt-[15px] px-3 mt-4 pl-4 p-4 w-[200px]">
-                            Our team</p>
-                        <div class="product owl-item-slide">
-                            <a class="product-link" href="/teams?lang=ru&amp;pkid=1679398890812538" target="_blank">
-                                <div class="product-img-wrap" style="width: auto; height: 100px; margin: 0 auto;">
-                                    <img class="product-img" src="/files/sites/1678379566328140/files/widgets/block_footer_slider_banners/0/ru/1613807741_large__js_uchitel_metematiki__0f8ce93b6435ccc7950d5e6a3b278392.jpg" style="width: auto; height: 100px; margin: 0 auto;">
-                                </div>
-                            </a>
+
+
+
+
+
+{{--                    TEACHERS CAROUSEL--}}
+{{--<x-carousel-component :teachers="$teachers" />--}}
+
+{{--                </section>--}}
+
+
+
+                <main  class="m-8">
+
+
+                    <x-section />
+                        <h3>Paracha de la semaine</h3>
+
+                        <div class="flex inline-flex mt-16">
+                            @foreach($services as $service )
+
+                                <p class="text-sm">- {{$service['title']}}</p>
+                            @endforeach
+                        </div>
                         </div>
 
 
-                    </section>
 
-</section>
+
+                    <x-section />
+                    <h3>Services proposed</h3>
+
+                    <div class="flex inline-flex">
+                        @foreach($services as $service )
+
+                            <p class="text-sm">- {{$service['title']}}</p>
+                        @endforeach
+                    </div>
+                    </div>
+
+
+
+
+
+                    <x-section />
+                        News
+                    </div>
+
+                    <x-section />
+                        Events
+                    </div>
+
+                    <x-section />
+                        Gallerie de photos
+                    </div>
+
+                    <x-section />
+                        A propos de l'école
+                    </div>
+
+
+                    <x-section />
+                       Programme
+                    </div>
+
+                    <x-section />
+                        Activites
+                    </div>
+
+
+                    <x-section />
+                        Demandes d-inscriptions et visites
+                    </div>
+
+                    <x-section />
+                        Parents
+                    </div>
+
+                </main>
+            </div>
+        </div>
 
 
 
 {{-- JAVA SCRIPT--}}
-                        <a href="javascript:click();" class="p-2 rounded">click and get the prize</a>
+<a href="javascript:click();" class="p-2 rounded">click and get the prize</a>
 
-                        <iframe src="{{url('/inner')}}" name="content" class="p-2 bg-red"></iframe>
+<iframe src="{{url('/inner')}}" name="content" class="p-2 bg-red"></iframe>
 {{--                        <a href="javascript:c();">askinfo</a>--}}
 {{--                        <a href="javascript:write();">write</a>--}}
 {{--                        <a href="javascript:Name();">name</a>--}}
@@ -266,53 +315,6 @@
 
 
 
-                <section class="m-8">
-
-                    <div class="flex justify-center m-4  pt-4 text-gray-500 bg-gray-50  w-full h-[400px]  ">
-                        Parasha de la semaine
-                    </div>
-
-                    <div class="flex justify-center mt-4  pt-4 text-gray-500 w-full h-[400px] bg-gray-50 ">
-                        Services proposed
-                    </div>
-
-                    <div class="flex justify-center mt-4  pt-4 text-gray-500 w-full h-[400px] bg-gray-50 ">
-                        News
-                    </div>
-
-                    <div class="flex justify-center mt-4  pt-4 text-gray-500 w-full h-[400px] bg-gray-50">
-                        Events
-                    </div>
-
-                    <div class="flex justify-center mt-4  pt-4 text-gray-500 w-full h-[400px] bg-gray-50">
-                        Gallerie de photos
-                    </div>
-
-                    <div class="flex justify-center mt-4  pt-4 text-gray-500 w-full h-[400px] bg-gray-50">
-                        A propos de l'école
-                    </div>
-
-
-                    <div class="flex justify-center mt-4  pt-4 text-gray-500 w-full h-[400px] bg-gray-50">
-                       Programme
-                    </div>
-
-                    <div class="flex justify-center mt-4  pt-4 text-gray-500 w-full h-[400px] bg-gray-50">
-                        Activites
-                    </div>
-
-
-                    <div class="flex justify-center mt-4  pt-4 text-gray-500 w-full h-[400px] bg-gray-50">
-                        Demandes d-inscriptions et visites
-                    </div>
-
-                    <div class="flex justify-center mt-4  pt-4 text-gray-500 w-full h-[400px] bg-gray-50">
-                        Parents
-                    </div>
-
-                </section>
-            </div>
-        </div>
 
 {{--   FOOTER --}}
 <footer class="w-full ">

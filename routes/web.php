@@ -22,12 +22,19 @@ Route::get('/inner', function () {
     return view('inner');
 });
 
+//auth for dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
+//moodle auth
+Route::get('/moodle', function () {
+    return view('layouts.default.moodle');
+})->middleware(['auth'])->name('moodle');
+
+require __DIR__.'/moodle.php';
 
 
 //admenu
@@ -35,7 +42,6 @@ Route::get('/advantages', 'PagesController@advantages')->name('advantages');
 Route::get('/program', 'PagesController@program')->name('program');
 Route::get('/teachers', 'TeachersController@index')->name('teachers');
 Route::get('/enroll', 'CandidatesController@enroll')->name('enroll');
-Route::get('/fees', 'PagesController@fees')->name('fees');
 Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/partners', 'PagesController@partners')->name('partners');
 Route::get('/suppliers', 'PagesController@suppliers')->name('suppliers');
@@ -44,9 +50,12 @@ Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::get('/eduplan', 'PagesController@history')->name('eduplan');
 Route::get('/extras', 'PagesController@history')->name('extras');
 Route::get('/projects', 'PagesController@history')->name('projects');
-Route::get('/moodlelogin', 'PagesController@moodleLogin')->name('moodlelogin');
+Route::post('/mlogin', 'PagesController@moodleLogin')->name('mlogin');
 
-Route::post('/moodle', 'PagesController@moodle')->name('moodle');
+
+
+
+//Route::get('/moodle', 'PagesController@moodle')->name('moodle');
 
 Route::resource('/novitas', 'NovitasController');
 Route::resource('/messages', 'MessagesController');
@@ -54,3 +63,8 @@ Route::resource('/candidates', 'CandidatesController');
 Route::resource('/students', 'StudentsController');
 Route::resource('/teachers', 'TeachersController');
 Route::resource('/infos', 'InfosController');
+Route::resource('/timetables', 'TimetablesController');
+Route::resource('/activities', 'ActivitiesController');
+Route::resource('/concours', 'ConcoursController');
+Route::resource('/fees', 'FeesController');
+Route::resource('/services', 'ServicesController');

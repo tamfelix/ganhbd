@@ -4490,7 +4490,7 @@ module.exports = (
 /**
  * Determines whether the specified URL is absolute
  *
- * @param {string} url The URL to test
+ * @param {string} url The URL to carousel
  * @returns {boolean} True if the specified URL is absolute, otherwise false
  */
 module.exports = function isAbsoluteURL(url) {
@@ -4515,7 +4515,7 @@ module.exports = function isAbsoluteURL(url) {
 /**
  * Determines whether the payload is an error thrown by Axios
  *
- * @param {*} payload The value to test
+ * @param {*} payload The value to carousel
  * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
  */
 module.exports = function isAxiosError(payload) {
@@ -4539,7 +4539,7 @@ var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/util
 module.exports = (
   utils.isStandardBrowserEnv() ?
 
-  // Standard browser envs have full support of the APIs needed to test
+  // Standard browser envs have full support of the APIs needed to carousel
   // whether the request URL is of the same origin as current location.
     (function standardBrowserEnv() {
       var msie = /(msie|trident)/i.test(navigator.userAgent);
@@ -4583,7 +4583,7 @@ module.exports = (
       /**
     * Determine if a URL shares the same origin as the current location
     *
-    * @param {String} requestURL The URL to test
+    * @param {String} requestURL The URL to carousel
     * @returns {boolean} True if URL shares the same origin, otherwise false
     */
       return function isURLSameOrigin(requestURL) {
@@ -4863,7 +4863,7 @@ var toString = Object.prototype.toString;
 /**
  * Determine if a value is an Array
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is an Array, otherwise false
  */
 function isArray(val) {
@@ -4873,7 +4873,7 @@ function isArray(val) {
 /**
  * Determine if a value is undefined
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if the value is undefined, otherwise false
  */
 function isUndefined(val) {
@@ -4883,7 +4883,7 @@ function isUndefined(val) {
 /**
  * Determine if a value is a Buffer
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is a Buffer, otherwise false
  */
 function isBuffer(val) {
@@ -4894,7 +4894,7 @@ function isBuffer(val) {
 /**
  * Determine if a value is an ArrayBuffer
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is an ArrayBuffer, otherwise false
  */
 function isArrayBuffer(val) {
@@ -4904,7 +4904,7 @@ function isArrayBuffer(val) {
 /**
  * Determine if a value is a FormData
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is an FormData, otherwise false
  */
 function isFormData(val) {
@@ -4914,7 +4914,7 @@ function isFormData(val) {
 /**
  * Determine if a value is a view on an ArrayBuffer
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
  */
 function isArrayBufferView(val) {
@@ -4930,7 +4930,7 @@ function isArrayBufferView(val) {
 /**
  * Determine if a value is a String
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is a String, otherwise false
  */
 function isString(val) {
@@ -4940,7 +4940,7 @@ function isString(val) {
 /**
  * Determine if a value is a Number
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is a Number, otherwise false
  */
 function isNumber(val) {
@@ -4950,7 +4950,7 @@ function isNumber(val) {
 /**
  * Determine if a value is an Object
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is an Object, otherwise false
  */
 function isObject(val) {
@@ -4960,7 +4960,7 @@ function isObject(val) {
 /**
  * Determine if a value is a plain Object
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @return {boolean} True if value is a plain Object, otherwise false
  */
 function isPlainObject(val) {
@@ -4975,7 +4975,7 @@ function isPlainObject(val) {
 /**
  * Determine if a value is a Date
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is a Date, otherwise false
  */
 function isDate(val) {
@@ -4985,7 +4985,7 @@ function isDate(val) {
 /**
  * Determine if a value is a File
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is a File, otherwise false
  */
 function isFile(val) {
@@ -4995,7 +4995,7 @@ function isFile(val) {
 /**
  * Determine if a value is a Blob
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is a Blob, otherwise false
  */
 function isBlob(val) {
@@ -5005,7 +5005,7 @@ function isBlob(val) {
 /**
  * Determine if a value is a Function
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is a Function, otherwise false
  */
 function isFunction(val) {
@@ -5015,7 +5015,7 @@ function isFunction(val) {
 /**
  * Determine if a value is a Stream
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is a Stream, otherwise false
  */
 function isStream(val) {
@@ -5025,7 +5025,7 @@ function isStream(val) {
 /**
  * Determine if a value is a URLSearchParams object
  *
- * @param {Object} val The value to test
+ * @param {Object} val The value to carousel
  * @returns {boolean} True if value is a URLSearchParams object, otherwise false
  */
 function isURLSearchParams(val) {
@@ -16883,7 +16883,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * function isGreeting(value) {
-     *   return /^h(?:i|ello)$/.test(value);
+     *   return /^h(?:i|ello)$/.carousel(value);
      * }
      *
      * function customizer(objValue, othValue) {
@@ -17175,7 +17175,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * function isGreeting(value) {
-     *   return /^h(?:i|ello)$/.test(value);
+     *   return /^h(?:i|ello)$/.carousel(value);
      * }
      *
      * function customizer(objValue, srcValue) {
@@ -20859,7 +20859,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * // Create custom iteratee shorthands.
      * _.iteratee = _.wrap(_.iteratee, function(iteratee, func) {
      *   return !_.isRegExp(func) ? iteratee(func) : function(string) {
-     *     return func.test(string);
+     *     return func.carousel(string);
      *   };
      * });
      *
@@ -21026,7 +21026,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * function vowels(string) {
      *   return _.filter(string, function(v) {
-     *     return /[aeiou]/i.test(v);
+     *     return /[aeiou]/i.carousel(v);
      *   });
      * }
      *
@@ -22491,7 +22491,7 @@ __webpack_require__.r(__webpack_exports__);
 // shim for using process in browser
 var process = module.exports = {};
 
-// cached from whatever global is present so that test runners that stub it
+// cached from whatever global is present so that carousel runners that stub it
 // don't break things.  But we need to wrap it in a try catch in case it is
 // wrapped in strict mode code which doesn't define any globals.  It's inside a
 // function because try/catches deoptimize in certain engines.
@@ -22683,7 +22683,7 @@ process.umask = function() { return 0; };
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"carousel":"grunt carousel","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm carousel","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-carousel":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
 
 /***/ })
 
@@ -22691,7 +22691,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -22705,20 +22705,20 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	(() => {
@@ -22751,7 +22751,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			return result;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -22763,7 +22763,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -22775,12 +22775,12 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -22791,7 +22791,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -22800,11 +22800,11 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
-/******/ 		
+/******/
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
@@ -22812,19 +22812,19 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			"/js/app": 0,
 /******/ 			"css/app": 0
 /******/ 		};
-/******/ 		
+/******/
 /******/ 		// no chunk on demand loading
-/******/ 		
+/******/
 /******/ 		// no prefetching
-/******/ 		
+/******/
 /******/ 		// no preloaded
-/******/ 		
+/******/
 /******/ 		// no HMR
-/******/ 		
+/******/
 /******/ 		// no HMR manifest
-/******/ 		
+/******/
 /******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
+/******/
 /******/ 		// install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
 /******/ 			var [chunkIds, moreModules, runtime] = data;
@@ -22849,20 +22849,20 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
-/******/ 		
+/******/
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+/******/
 /******/ })()
 ;

@@ -1,53 +1,52 @@
 @extends('welcome')
 @section('content')
 
+    {{--    BANNER--}}
+
+    <section class="max-w-6xl  px-8   bg-white  position-static mt-2">
+        <img src="/app/ganhbd/public/img/slide-5.jpeg" class="w-[100%] h-auto pt-5 parent position-sticky">
+        <div class="position-relative sopra0 font3 text-md">
+            <p class=" h-[40px] w-[200px] bg-[#6091ba] text-white px-3 py-1.5  uppercase mb-1">Come to OPEN DAYS</p>
+            <p class="bg-black h-[28px] px-3 text-white  opacity-75  w-[400px]">
+                Discover our online resources on Moodle</p>
+        </div>
+
+
+        {{--MAIN SECTION        --}}
+
+
+        {{--    first column    ABOUT            --}}
+        <main class="flex inline-flex w-full   ">
+
+
+            {{--  second column MAIN CONTENT NEWS--}}
+
     {{--MAIN SECTION CONTENT THAT WE INSERT INTO WELCOME.BLADE.PHP--}}
 
     <div class="w-[20%]  mr-5   text-[#2f506c] pb-3  ">
-        <section class="bg-gray-50 mb-3 h-[200px] pt-3">
+        <section class="bg-gray-50 mb-4 h-[200px] pt-3 items-center">
             <a class="font3 text-[#2f506c] text-lg p-3 pl-0 pt-[12px] border-t-2 border-[#6091ba] ">
                 &nbsp &nbsp About School &nbsp</a>
             <img src="/app/ganhbd/public/img/img1.jpeg" class="w-[150px] h-[120px] pl-[10%] pt-[10px]"/>
         </section>
-        <section class="mt-5 bg-gray-50 pt-3 h-[400px]">
-            <a class="font3 text-[#2f506c] text-lg p-3 pl-0  pt-[12px] border-t-2 border-[#6091ba] ">
+
+
+        <section class= "bg-gray-50  h-[400px] items-center flex flex-col">
+            <a class="font3 text-[#2f506c] text-lg pt-4 pl-0   border-t-2 border-[#6091ba] align-items-lg-start">
                 &nbsp &nbsp Day timetable &nbsp
             </a>
-            <table class="w-[180px] h-[300px] pl-6 mt-2 m-4" >
-                <tbody class="font4 pl-6 uppercase text-gray-600">
 
-                <tr class="font4   py-2  ">
-                    <td class = "w-[30%] px-2">1 LESSON</td>
-                    <td class = "w-[30%] font4">11.05 - 11.50</td>
-                    <td class = "w-[30%] font4">16.55 - 17.40</td>
-                </tr>
-                <tr class="font4 border-t  py-2 ">
-                    <td class = "w-[30%] px-2">2 LESSON</td>
-                    <td class = "w-[30%] font4">11.05 - 11.50</td>
-                    <td class = "w-[30%] font4">16.55 - 17.40</td>
-                </tr>
-                <tr class="font4 border-t  py-3 ">
-                    <td class = "w-[30%] px-2">3 LESSON</td>
-                    <td class = "w-[30%] font4">11.05 - 11.50</td>
-                    <td class = "w-[30%] font4">16.55 - 17.40</td>
-                </tr>
-                <tr class="font4 border-t border-b py-2 ">
-                    <td class = "w-[30%] px-2">4 LESSON</td>
-                    <td class = "w-[30%] font4">11.05 - 11.50</td>
-                    <td class = "w-[30%] font4">16.55 - 17.40</td>
-                </tr>
-                <tr class="font4 border-t  py-2 ">
-                    <td class = "w-[30%] px-2">5 LESSON</td>
-                    <td class = "w-[30%] font4">11.05 - 11.50</td>
-                    <td class = "w-[30%] font4">16.55 - 17.40</td>
-                </tr>
-                </tbody>
-            </table>
-            <a class="font3 ml-4 mb-4 text-blue-400 inline-flex items-center">See full timetable
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right text-blue-400" viewBox="0 0 16 16">
-                    <path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>
-                </svg>
-            </a>
+            <x-timetable :timetable="$timetable" class="items-center"></x-timetable>
+
+            <a href="{{url('timetables')}}" class=" text-blue-400  ">
+                <div class="flex inline-flex  font3 items-center text-center py-2">
+                    <div class="">See full timetable</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right text-blue-400" viewBox="0 0 16 16">
+                        <path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>
+                    </svg>
+
+                </div></a>
+
         </section>
         {{--WEATHER WIDGET--}}
         <section class="bg-gray-50 my-3  mt-4 h-[200px] pt-3">
@@ -115,5 +114,8 @@
 
     </a>
 </div>
+
+
+
 
 @endsection

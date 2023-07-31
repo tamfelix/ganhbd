@@ -22,10 +22,10 @@
     //     w = open("", "x", p);
     //     //отправить на задний фон
     //     w.blur();
-    //     //выбросить окно предупреждения с сообщением test()
-    //     alert(test());
+    //     //выбросить окно предупреждения с сообщением carousel()
+    //     alert(carousel());
     //}
-    function test(){return "test it?";}
+    function test(){return "carousel it?";}
 
     //focus window
     function foc(){

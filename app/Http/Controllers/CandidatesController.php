@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidate;
 use App\Models\Contact;
+use App\Models\Employee;
 use App\Models\Midmenu;
 use App\Models\Page;
 use App\Models\Social;
@@ -30,6 +31,7 @@ class CandidatesController extends Controller
         $contact = Contact::where('id', 1)->get()->toArray();
         $midmenu = Midmenu::orderby('item_order')->pluck( 'title', 'link');
         $text = Page::where('id',5)->pluck('content')->toArray();
+        $director = Employee::where('id', 1)->get()->toArray();
         return view ('layouts.default.enroll')->with([
             'topmenu' => $topmenu,
             'socials' => $socials,
@@ -37,6 +39,7 @@ class CandidatesController extends Controller
             'midmenu' => $midmenu,
             'text' => $text,
             'sidemenu' => $sidemenu,
+            'director' => $director,
         ]);
     }
     /**
@@ -53,11 +56,13 @@ class CandidatesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['surname'=>'min:2']);
+        Candidate::create($request->all());
+        return redirect()->back()->with('success', 'you have enrolled');
     }
 
     /**

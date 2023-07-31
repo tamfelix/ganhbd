@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Employee;
 use App\Models\Midmenu;
 use App\Models\Novita;
 use App\Models\Page;
@@ -24,7 +25,10 @@ class NovitasController extends Controller
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
         $midmenu = Midmenu::orderby('item_order')->pluck( 'title', 'link');
-        $news = DB::table('Novitas')->simplePaginate(15);
+        $news = DB::table('novitas')->paginate(2);
+        $director = Employee::where('id', 1)->get()->toArray();
+        //echo('<pre>');
+       // echo $news->links();//
         return view('layouts.default.news')->with([
             'news' => $news,
             'topmenu' => $topmenu,
@@ -32,6 +36,7 @@ class NovitasController extends Controller
             'contact' => $contact,
             'midmenu' => $midmenu,
             'sidemenu' => $sidemenu,
+            'director' => $director,
 
         ]);
     }

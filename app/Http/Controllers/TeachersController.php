@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Employee;
 use App\Models\Midmenu;
 use App\Models\Page;
 use App\Models\Social;
@@ -24,6 +25,7 @@ class TeachersController extends Controller
         $text = Page::where('id',3)->pluck('content')->toArray();
         $teachers = Teacher::orderby('surname')->get()->toArray();
         $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $director = Employee::where('id', 1)->get()->toArray();
         //print_r($topmenu);
         return view('layouts.default.teachers')->with([
             'topmenu' => $topmenu,
@@ -33,6 +35,7 @@ class TeachersController extends Controller
             'text' => $text,
             'teachers' => $teachers,
             'sidemenu' => $sidemenu,
+            'director' => $director,
 
         ]);
     }
@@ -66,7 +69,9 @@ class TeachersController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        //
+        return view('layouts.default.teacher')->with([
+
+        ]);
     }
 
     /**
