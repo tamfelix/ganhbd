@@ -37,6 +37,7 @@ class ActivitiesController extends Controller
             'midmenu' => $midmenu,
             'sidemenu' => $sidemenu,
             'director' => $director,
+            'services' => $services,
 
         ]);
     }

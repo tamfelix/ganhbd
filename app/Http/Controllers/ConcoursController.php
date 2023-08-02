@@ -38,6 +38,7 @@ class ConcoursController extends Controller
                 'midmenu' => $midmenu,
                 'sidemenu' => $sidemenu,
                 'director' => $director,
+                'services' => $services,
 
             ]);
 

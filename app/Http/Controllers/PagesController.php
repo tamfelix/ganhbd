@@ -56,7 +56,7 @@ class PagesController extends Controller
         $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
         $about = Page::find(1)->pluck('content')->toArray();
         $director = Employee::where('id', 1)->get()->toArray();
-
+        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
         //print_r($about);
         return view('layouts.default.about')->with([
             'topmenu' => $topmenu,
@@ -66,7 +66,7 @@ class PagesController extends Controller
             'about' => $about,
             'sidemenu' => $sidemenu,
             'director' => $director,
-
+            'services' => $services,
 
         ]);
     }
@@ -80,6 +80,7 @@ class PagesController extends Controller
         $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
         $history = Page::find(1)->pluck('content')->toArray();
         $director = Employee::where('id', 1)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
         //print_r($about);
         return view('layouts.default.history')->with([
             'topmenu' => $topmenu,
@@ -89,7 +90,7 @@ class PagesController extends Controller
             'history' => $history,
             'sidemenu' => $sidemenu,
             'director' => $director,
-
+            'services' => $services,
 
         ]);
     }
@@ -103,6 +104,7 @@ class PagesController extends Controller
         $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
         $advantages = Page::where('id', 2)->pluck('content')->toArray();
         $director = Employee::where('id', 1)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
         //print_r($topmenu);
         return view('layouts.default.advantages')->with([
             'topmenu' => $topmenu,
@@ -112,7 +114,7 @@ class PagesController extends Controller
             'advantages' => $advantages,
             'sidemenu' => $sidemenu,
             'director' => $director,
-
+            'services' => $services,
 
         ]);
     }
@@ -126,6 +128,7 @@ class PagesController extends Controller
         $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link',);
         $program = Page::where('id', 3)->pluck('content')->toArray();
         $director = Employee::where('id', 1)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
         //print_r($topmenu);
         return view('layouts.default.program')->with([
             'topmenu' => $topmenu,
@@ -135,7 +138,7 @@ class PagesController extends Controller
             'program' => $program,
             'sidemenu' => $sidemenu,
             'director' => $director,
-
+            'services' => $services,
 
         ]);
     }
@@ -149,6 +152,7 @@ class PagesController extends Controller
         $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
         $text = Page::where('id', 7)->pluck('content')->toArray();
         $director = Employee::where('id', 1)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
         //print_r($topmenu);
         return view('layouts.default.partners')->with([
             'topmenu' => $topmenu,
@@ -158,7 +162,7 @@ class PagesController extends Controller
             'text' => $text,
             'sidemenu' => $sidemenu,
             'director' => $director,
-
+            'services' => $services,
 
         ]);
     }
@@ -172,6 +176,7 @@ class PagesController extends Controller
         $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
         $text = Page::where('id', 9)->pluck('content')->toArray();
         $director = Employee::where('id', 1)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
         //print_r($topmenu);
         return view('layouts.default.suppliers')->with([
             'topmenu' => $topmenu,
@@ -181,7 +186,7 @@ class PagesController extends Controller
             'text' => $text,
             'sidemenu' => $sidemenu,
             'director' => $director,
-
+            'services' => $services,
 
         ]);
     }
@@ -195,6 +200,7 @@ class PagesController extends Controller
         $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
         $text = Page::where('id', 16)->pluck('content')->toArray();
         $director = Employee::where('id', 1)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
 
         //print_r($text);
 
@@ -206,7 +212,7 @@ class PagesController extends Controller
             'text' => $text,
             'sidemenu' => $sidemenu,
             'director' => $director,
-
+            'services' => $services,
 
         ]);
     }
@@ -229,6 +235,7 @@ class PagesController extends Controller
         $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
         $text = Page::where('id', 7)->pluck('content')->toArray();
         $director = Employee::where('id', 1)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
         //print_r($topmenu);
         return view('layouts.default.moodle')->with([
             'topmenu' => $topmenu,
@@ -238,7 +245,7 @@ class PagesController extends Controller
             'text' => $text,
             'sidemenu' => $sidemenu,
             'director' => $director,
-
+            'services' => $services,
 
         ]);
     }

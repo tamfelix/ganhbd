@@ -43,7 +43,7 @@ class MessagesController extends Controller
         //$message->save();
         //echo ('<pre>');
         //print_r($message);
-        return redirect()->back()->with('success', 'message sent');
+        return redirect()->back()->with('success', __('messages.sent'));
     }
 
     /**

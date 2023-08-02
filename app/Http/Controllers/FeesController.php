@@ -8,6 +8,7 @@ use App\Models\Fee;
 use App\Models\Message;
 use App\Models\Midmenu;
 use App\Models\Page;
+use App\Models\Service;
 use App\Models\Social;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,7 @@ class FeesController extends Controller
         $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
         $fees = Page::where('id',6)->pluck('content')->toArray();
         $director = Employee::where('id', 1)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
         //print_r($topmenu);
         return view('layouts.default.fees')->with([
             'topmenu' => $topmenu,
@@ -36,7 +38,7 @@ class FeesController extends Controller
             'fees' => $fees,
             'sidemenu' => $sidemenu,
             'director' => $director,
-
+            'services' => $services,
 
         ]);
     }
@@ -69,7 +71,7 @@ class FeesController extends Controller
         $message = Message::create($request->all());
         //$message->save();
 //        dd($message);
-        return redirect()->back()->with('success', 'enquiry sent');
+        return redirect()->back()->with('success', __('messages.enquiry'));
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\Midmenu;
 use App\Models\Novita;
 use App\Models\Page;
+use App\Models\Service;
 use App\Models\Social;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,6 +28,7 @@ class NovitasController extends Controller
         $midmenu = Midmenu::orderby('item_order')->pluck( 'title', 'link');
         $news = DB::table('novitas')->paginate(2);
         $director = Employee::where('id', 1)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
         //echo('<pre>');
        // echo $news->links();//
         return view('layouts.default.news')->with([
@@ -37,7 +39,7 @@ class NovitasController extends Controller
             'midmenu' => $midmenu,
             'sidemenu' => $sidemenu,
             'director' => $director,
-
+            'services' => $services,
         ]);
     }
 

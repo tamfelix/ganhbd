@@ -6,6 +6,7 @@ use App\Models\Contact;
 use App\Models\Employee;
 use App\Models\Midmenu;
 use App\Models\Page;
+use App\Models\Service;
 use App\Models\Social;
 use App\Models\Timetable;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class TimetablesController extends Controller
         $midmenu = Midmenu::orderby('item_order')->pluck( 'title', 'link');
         $timetable = Timetable::orderby('timetable')->pluck('timetable', 'fromto')->toArray();
         $director = Employee::where('id', 1)->get()->toArray();
-
+        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
         return view('layouts.default.timetable')->with([
             'timetable' => $timetable,
             'topmenu' => $topmenu,
@@ -36,6 +37,7 @@ class TimetablesController extends Controller
             'midmenu' => $midmenu,
             'sidemenu' => $sidemenu,
             'director' => $director,
+            'services' => $services,
         ]);
     }
 

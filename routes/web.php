@@ -38,10 +38,9 @@ require __DIR__.'/moodle.php';
 
 
 //admenu
-Route::get('/advantages', 'PagesController@advantages')->name('advantages');
+
+Route::get('/advantages','PagesController@advantages')->name('advantages');
 Route::get('/program', 'PagesController@program')->name('program');
-Route::get('/teachers', 'TeachersController@index')->name('teachers');
-Route::get('/enroll', 'CandidatesController@enroll')->name('enroll');
 Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/partners', 'PagesController@partners')->name('partners');
 Route::get('/suppliers', 'PagesController@suppliers')->name('suppliers');
@@ -56,7 +55,8 @@ Route::post('/mlogin', 'PagesController@moodleLogin')->name('mlogin');
 
 
 //Route::get('/moodle', 'PagesController@moodle')->name('moodle');
-
+Route::get('/teachers', 'TeachersController@index')->name('teachers');
+Route::get('/enroll', 'CandidatesController@enroll')->name('enroll');
 Route::resource('/novitas', 'NovitasController');
 Route::resource('/messages', 'MessagesController');
 Route::resource('/candidates', 'CandidatesController');
@@ -68,3 +68,7 @@ Route::resource('/activities', 'ActivitiesController');
 Route::resource('/concours', 'ConcoursController');
 Route::resource('/fees', 'FeesController');
 Route::resource('/services', 'ServicesController');
+
+
+Route::fallback(function () {return 'custom 404';
+});

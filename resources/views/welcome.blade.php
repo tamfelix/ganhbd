@@ -12,7 +12,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
 
-        <title>Ecole Ohalei Menahem</title>
+        <title>Ecole Ohalei Mena'hem</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -22,9 +22,7 @@
 
 
         <style>
-            body {
-                /*font-family: 'Nunito', sans-serif;*/
-            }
+            body {}
             .font1 {font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 10px; font-weight: 300;  }
             .font2{font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: 300; line-height: 20px;}
             .font3{font-family: 'Open Sans', sans-serif; font-size: 13px; font-weight: 400; line-height: 29px;}
@@ -95,10 +93,14 @@
                     <input type="search" class="  h-[26px] w-26 ml-2  text-grey-100 flex" content="search..."  >
                     <input type="submit" value="search" class="bg-green-600 h-[26px] rounded text-xs  ml-[3px] w-16">
                 </form>
-                <select class="inline-flex h-4 bg-transparent">
-                    <option>Fr</option>
-                    <option>Eng</option>
-                </select>
+                <form action="language" method="POST">
+                    @csrf
+                    @method('POST')
+                    <select name="lang" id="lang" class="inline-flex h-4 bg-transparent">
+                        <option value="fr">Fr</option>
+                        <option value="en">Eng</option>
+                    </select>
+                </form>
             </div>
         </nav>
 
@@ -201,8 +203,7 @@
 {{--                                <x-login></x-login>--}}
 
 
-{{--                                <input type="text" id="login" class="  h-[26px] w-26 m-2  text-grey-100 flex"   >--}}
-{{--                                <input type="password" id="pwd" class="  h-[26px] w-26 m-2  text-grey-100 flex"  >--}}
+
                                 <x-green-button type="submit" value="sign in" class=""></x-green-button>
                             </form>
                         </section>
@@ -232,70 +233,69 @@
 
 
 
-                <main  class="m-8">
+                <main  class="mt-8 mx-0 w-full ">
+
+                    @php $label = 'Paracha de la semaine' @endphp
+                    <x-section :label="$label" />
+
+                        <div class="flex flex-col mt-16 border mx-8">
+                            @foreach($services as $service )
+                                <p class="text-sm p-1"><a href="{{route('services.show', $service["id"])}}">- {{$service['title']}}</a></p>
+                            @endforeach
+                        </div>
+                    </div>
 
 
-                    <x-section />
-                        <h3>Paracha de la semaine</h3>
 
-                        <div class="flex inline-flex mt-16">
+                    @php $label = 'Services proposed' @endphp
+                    <x-section :label="$label" />
+                        <div class="flex inline-flex">
                             @foreach($services as $service )
 
                                 <p class="text-sm">- {{$service['title']}}</p>
                             @endforeach
                         </div>
-                        </div>
-
-
-
-
-                    <x-section />
-                    <h3>Services proposed</h3>
-
-                    <div class="flex inline-flex">
-                        @foreach($services as $service )
-
-                            <p class="text-sm">- {{$service['title']}}</p>
-                        @endforeach
-                    </div>
                     </div>
 
 
+                    @php $label = 'News' @endphp
+                    <x-section :label="$label" />
 
-
-
-                    <x-section />
-                        News
                     </div>
 
-                    <x-section />
-                        Events
+                    @php $label = 'Events' @endphp
+                    <x-section :label="$label" />
+
                     </div>
 
-                    <x-section />
-                        Gallerie de photos
+                    @php $label = "Gallerie de photos"; @endphp
+                    <x-section :label="$label" />
+
                     </div>
 
-                    <x-section />
-                        A propos de l'école
+                    @php $label = "A propos de l'école" @endphp
+                    <x-section :label="$label" />
+
                     </div>
 
+                    @php $label = 'Programme' @endphp
+                    <x-section :label="$label" />
 
-                    <x-section />
-                       Programme
                     </div>
 
-                    <x-section />
-                        Activites
+                    @php $label = 'Activites' @endphp
+                    <x-section :label="$label" />
+
                     </div>
 
+                    @php $label = "Demandes d-inscriptions et visites" @endphp
+                    <x-section :label="$label" />
 
-                    <x-section />
-                        Demandes d-inscriptions et visites
                     </div>
 
-                    <x-section />
-                        Parents
+                    @php $label = 'Parents' @endphp
+                    <x-section :label="$label" />
+
                     </div>
 
                 </main>
@@ -317,7 +317,7 @@
 
 
 {{--   FOOTER --}}
-<footer class="w-full ">
+<footer class="width-full">
 
     <section class="bg-[#444444] text-white flex inline-flex h-auto w-full font3 text-[17px] ">
         <div class="w-[25%] p-5 ml-12 items-center">
@@ -403,6 +403,8 @@
 
 </footer>
 
+</body>
+
     <script type="text/javascript">
         function click(){
             alert(frames.content.s);
@@ -425,9 +427,9 @@
     </script>
 
 
-</script>
 
 
 
-    </body>
+
+
 </html>
