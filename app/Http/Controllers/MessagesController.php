@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
+use App\Models\Employee;
 use App\Models\Message;
+use App\Models\Midmenu;
+use App\Models\Page;
+use App\Models\Service;
+use App\Models\Social;
 use Illuminate\Http\Request;
 
 class MessagesController extends Controller
@@ -20,11 +26,33 @@ class MessagesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $socials = Social::orderby('icon_order')->get()->toArray();
+        $contact = Contact::where('id', 1)->get()->toArray();
+        $midmenu = Midmenu::orderby('item_order')->get();
+        $text = Page::where('id', 16)->pluck('content')->toArray();
+        $director = Employee::where('id', 1)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
+
+        //print_r($text);
+
+        return view('layouts.default.contact')->with([
+            'topmenu' => $topmenu,
+            'socials' => $socials,
+            'contact' => $contact,
+            'midmenu' => $midmenu,
+            'text' => $text,
+            'sidemenu' => $sidemenu,
+            'director' => $director,
+            'services' => $services,
+
+        ]);
+
     }
 
     /**
@@ -39,7 +67,7 @@ class MessagesController extends Controller
 //        $request->validate(['email'=>'min:7']);
 //        $request->validate(['content'=>'min:7']);
 
-        $message  = Message::create($request->all());
+        $message  = Message::create($request->validated());
         //$message->save();
         //echo ('<pre>');
         //print_r($message);

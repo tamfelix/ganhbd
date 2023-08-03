@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App;
 
 class CheckLanguage
 {
@@ -16,9 +17,20 @@ class CheckLanguage
      */
     public function handle(Request $request, Closure $next)
     {
-        $locale = $request['backend_language'];
-        //App::setlocale($locale);
+        $language = 'fr'; //default
 
-        return $next($request);
+        if (request('language')){
+            $language = request('language');
+            session()->put('language', $language);
+        }elseif(session('language')){
+            $language = session('language');
+        }
+        app()->setLocale($language);
+        //$locale = $request['backend_language'];
+        //if (session()->has('locale')) {
+          //  App::setLocale(session()->get('locale'));
+
+            return $next($request);
+
     }
 }

@@ -13,16 +13,17 @@ use App\Models\Teacher;
 use App\Models\Timetable;
 use Illuminate\Http\Request;
 use App\Models\Page;
+use App;
 
 class PagesController extends Controller
 {
     public function index()
     {
-        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
-        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->get();
+        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->get();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
+        $midmenu = Midmenu::orderby('item_order')->get();
         $timetable = Timetable::orderby('timetable')->take(4)->pluck('timetable', 'fromto')->toArray();
         $news = Novita::latest()->take(5)->get()->toArray();
         $teachers = Teacher::orderBy('surname')->get()->toArray();
@@ -191,31 +192,7 @@ class PagesController extends Controller
         ]);
     }
 
-    public function contact()
-    {
-        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
-        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
-        $socials = Social::orderby('icon_order')->get()->toArray();
-        $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
-        $text = Page::where('id', 16)->pluck('content')->toArray();
-        $director = Employee::where('id', 1)->get()->toArray();
-        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
 
-        //print_r($text);
-
-        return view('layouts.default.contact')->with([
-            'topmenu' => $topmenu,
-            'socials' => $socials,
-            'contact' => $contact,
-            'midmenu' => $midmenu,
-            'text' => $text,
-            'sidemenu' => $sidemenu,
-            'director' => $director,
-            'services' => $services,
-
-        ]);
-    }
 
     public function moodleLogin(Request $request)
     {
@@ -249,4 +226,20 @@ class PagesController extends Controller
 
         ]);
     }
+
+//    public function change(Request $request){
+//
+////        $locale = App::currentlocale();
+////        if (App::islocale('en')){ redirect()->back();
+////        } else {redirect()->back();}
+////        //session()->put('locale', $request->lang);
+//
+//
+//        App::setLocale($request->lang);
+//        session()->put('locale', $request->lang);
+//
+//        return redirect()->back();
+//
+//    }
+//
 }

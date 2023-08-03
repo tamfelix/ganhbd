@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Midmenu extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['title_en', 'title_fr', 'link', 'item_order', 'id'];
 }

@@ -14,6 +14,8 @@ use App\Http\Controllers\PagesController;
 |
 */
 
+//Route::get('/', 'LocalizationController@index');
+//Route::get('change/lang', 'LocalizationController@lang_change')->name('LangChange');
 
 Route::get('/', 'PagesController@index');
 
@@ -22,10 +24,16 @@ Route::get('/inner', function () {
     return view('inner');
 });
 
+
 //auth for dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::resource('posts', \App\Http\Controllers\MessagesController::class)->only('create', 'store');
+});
+
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -45,18 +53,17 @@ Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/partners', 'PagesController@partners')->name('partners');
 Route::get('/suppliers', 'PagesController@suppliers')->name('suppliers');
 Route::get('/history', 'PagesController@history')->name('history');
-Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::get('/eduplan', 'PagesController@history')->name('eduplan');
 Route::get('/extras', 'PagesController@history')->name('extras');
 Route::get('/projects', 'PagesController@history')->name('projects');
+
+
 Route::post('/mlogin', 'PagesController@moodleLogin')->name('mlogin');
 
 
 
 
 //Route::get('/moodle', 'PagesController@moodle')->name('moodle');
-Route::get('/teachers', 'TeachersController@index')->name('teachers');
-Route::get('/enroll', 'CandidatesController@enroll')->name('enroll');
 Route::resource('/novitas', 'NovitasController');
 Route::resource('/messages', 'MessagesController');
 Route::resource('/candidates', 'CandidatesController');
@@ -70,5 +77,5 @@ Route::resource('/fees', 'FeesController');
 Route::resource('/services', 'ServicesController');
 
 
-Route::fallback(function () {return 'custom 404';
-});
+Route::fallback(function () {return '404';}
+);

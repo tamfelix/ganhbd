@@ -23,12 +23,12 @@
 
         <style>
             body {}
-            .font1 {font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 10px; font-weight: 300;  }
-            .font2{font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: 300; line-height: 20px;}
-            .font3{font-family: 'Open Sans', sans-serif; font-size: 13px; font-weight: 400; line-height: 29px;}
-            .font4{font-family:system-ui,-apple-system; font-size: 11px; font-weight: 300; line-height: 20px;}
-            .font5{font-family:system-ui,-apple-system; font-size: 12px; font-weight: 400; line-height: 20px;}
-            h3{font-weight: bold; font-size: 13px;}
+            .font1 {font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 300;  }
+            .font2{font-family: 'Open Sans', sans-serif; font-size: 14px; font-weight: 300; line-height: 20px;}
+            .font3{font-family: 'Open Sans', sans-serif; font-size: 15px; font-weight: 400; line-height: 29px;}
+            .font4{font-family:system-ui,-apple-system; font-size: 14px; font-weight: 300; line-height: 20px;}
+            .font5{font-family:system-ui,-apple-system; font-size: 15px; font-weight: 400; line-height: 20px;}
+            h3{font-weight: bold; font-size: 16px;}
 
             a, a:hover{text-underline: none!important; text-decoration: none}
             li{list-style-type: none}
@@ -39,13 +39,13 @@
         </style>
     </head>
 
-    <body class="antialiased  d-inline-block">
+    <main class="antialiased  ">
 
 {{--    AD MENU--}}
     <nav class=" bg-blue-800 text-blue-400 h-[32px] font2 items-center flex ">
         <ul class="flex inline-flex items-center ">
-            @foreach($topmenu as $adname => $link)
-            <a href="{{url($link)}}"><li class="list-none  p-2">{{ucfirst($adname)}}   &nbsp; | </li>
+            @foreach($topmenu as $aditem)
+            <a href="{{$aditem->link}}"><li class="list-none  p-2">{{ ucfirst( $aditem->{'title_'.app()->getLocale()} ) }}   &nbsp; | </li>
             @endforeach
 
 {{--AUTH--}}
@@ -88,19 +88,36 @@
 
 
             </div>
-            <div >
-                <form class=" inline-flex ml-48">
+            <div class="inline-flex flex-row">
+            {{--        SEARCH WINDOW        --}}
+
+                <form class=" inline-flex ml-48" action="" method="POST">
+                    @csrf
+                    @method('POST')
                     <input type="search" class="  h-[26px] w-26 ml-2  text-grey-100 flex" content="search..."  >
                     <input type="submit" value="search" class="bg-green-600 h-[26px] rounded text-xs  ml-[3px] w-16">
                 </form>
-                <form action="language" method="POST">
+                {{-- LANGUAGE CHANGE               --}}
+
+
+                <div class="mx-2">
+                @foreach(config('app.available_locales') as $locale)
+                    <a href="{{request()->url() }}?language={{ $locale }}"
+                        class="@if (app()->getLocale() == $locale) border-white @endif inline-flex items-center">
+                        {{strtoupper($locale)}}
+                    </a>
+                @endforeach
+                </div>
+                    {{--                {{ __('messages.welcome') }}--}}
+{{--                <form action="{{route('changeLang')}}" method="POST">--}}
                     @csrf
                     @method('POST')
-                    <select name="lang" id="lang" class="inline-flex h-4 bg-transparent">
-                        <option value="fr">Fr</option>
-                        <option value="en">Eng</option>
-                    </select>
-                </form>
+{{--                    <select name="lang" id="lang" class="inline-flex h-4 bg-transparent changeLang">--}}
+{{--                        <option value="fr" {{ session()->get('locale') == 'fr' ? 'selected' : '' }}>Fr</option>--}}
+{{--                        <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>Eng</option>--}}
+{{--                    </select>--}}
+
+{{--                </form>--}}
             </div>
         </nav>
 
@@ -150,14 +167,14 @@
 
                         <li class="px-3"><a href="{{url('novitas')}}">news</a></li>
 
-                        @foreach($midmenu as $menu => $number)
+                        @foreach($midmenu as $menu)
                         <li><a class=" mx-3"  href="#" role ="btn" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{$number}}<i class="fa fa-angle-down mx-1"></i>
+                                {{ $menu->{'title_'.app()->getLocale()} }}<i class="fa fa-angle-down mx-1"></i>
                             </a>
 
 
                             <ul class="dropdown-menu mt-[11px] rounded-0" aria-labelledby="dropdownMenuLink">
-                                {!! $menu !!}
+                                {!! $menu->link !!}
                             </ul>
                         </li>
                     @endforeach
@@ -165,7 +182,7 @@
                 </ul>
     </nav>
 
-
+    <main class="m-auto p-0 items-center w-full  flex flex-row">
             @yield('content')
 
 
@@ -174,10 +191,10 @@
                         <section class=" bg-gray-50 text-[#2f506c] p-3 pt-[13px] pl-0">
                             <a class="font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[13px] px-3">Navigation</a>
                             <ul class="font5 text-[#6c9abf] pl-4 flex flex-col w-[150px] ">
-                                @foreach($sidemenu as $side=>$link)
+                                @foreach($sidemenu as $side)
                                 <li class="py-1  inline-flex items-center "> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short mr-1" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                                        </svg><a href="{{url($link)}}">{{ucfirst($side)}}</a></li>
+                                        </svg><a href="{{$side->link}}">{{ ucfirst( $side->{'title_'.app()->getLocale()} ) }}</a></li>
                                 @endforeach
                             </ul>
                         </section>
@@ -314,7 +331,7 @@
 
 
 
-
+</main>
 
 {{--   FOOTER --}}
 <footer class="width-full">
@@ -422,7 +439,11 @@
         }
 
 
+        {{--var url = "{{ route('changeLang') }}";--}}
 
+        {{--$(".changeLang").change(function(){--}}
+        {{--    window.location.href = url + "?lang="+ $(this).val();--}}
+        {{--});--}}
 
     </script>
 
