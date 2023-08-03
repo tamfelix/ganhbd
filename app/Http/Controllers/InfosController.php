@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Info;
+use App\Models\Midmenu;
+use App\Models\Page;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class InfosController extends Controller
@@ -14,7 +17,10 @@ class InfosController extends Controller
      */
     public function index()
     {
-        //
+        $topmenu = Page::where('topmenu', 1)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $sidemenu = Page::where('topmenu', 0)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $midmenu = Midmenu::orderby('item_order')->select(['title_en','title_fr', 'link_en', 'link_fr'])->get();
+        $services = Service::orderBy('created_at')->take(10)->select(['title_en', 'title_fr', 'id'])->get();
     }
 
     /**

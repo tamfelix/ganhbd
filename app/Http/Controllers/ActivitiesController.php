@@ -7,6 +7,7 @@ use App\Models\Contact;
 use App\Models\Employee;
 use App\Models\Midmenu;
 use App\Models\Page;
+use App\Models\Service;
 use App\Models\Social;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,13 +21,15 @@ class ActivitiesController extends Controller
      */
     public function index()
     {
-        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
-        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $topmenu = Page::where('topmenu', 1)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $sidemenu = Page::where('topmenu', 0)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $midmenu = Midmenu::orderby('item_order')->select(['title_en','title_fr', 'link_en', 'link_fr'])->get();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck( 'title', 'link');
         $activities = DB::table('activities')->paginate(2);
         $director = Employee::where('id', 1)->get()->toArray();
+        $services = Service::select('title_en', 'title_fr', 'id')->latest()->get();
+        $text = Page::where('id', 13)->select(['title_en', 'title_fr'])->get();
         //echo('<pre>');
         // echo $news->links();//
         return view('layouts.default.activities')->with([
@@ -38,6 +41,7 @@ class ActivitiesController extends Controller
             'sidemenu' => $sidemenu,
             'director' => $director,
             'services' => $services,
+            'text' => $text,
 
         ]);
     }

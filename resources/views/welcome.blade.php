@@ -45,7 +45,7 @@
     <nav class=" bg-blue-800 text-blue-400 h-[32px] font2 items-center flex ">
         <ul class="flex inline-flex items-center ">
             @foreach($topmenu as $aditem)
-            <a href="{{$aditem->link}}"><li class="list-none  p-2">{{ ucfirst( $aditem->{'title_'.app()->getLocale()} ) }}   &nbsp; | </li>
+            <a href=" {{ url($aditem->link)  }} "><li class="list-none  p-2">{{ ucfirst( $aditem->{'title_'.app()->getLocale()} ) }}   &nbsp; | </li>
             @endforeach
 
 {{--AUTH--}}
@@ -103,7 +103,7 @@
                 <div class="mx-2">
                 @foreach(config('app.available_locales') as $locale)
                     <a href="{{request()->url() }}?language={{ $locale }}"
-                        class="@if (app()->getLocale() == $locale) border-white @endif inline-flex items-center">
+                        class="@if ( app()->getLocale() == $locale ) border-b border-white border-b-2  @endif inline-flex items-center px-1">
                         {{strtoupper($locale)}}
                     </a>
                 @endforeach
@@ -174,7 +174,7 @@
 
 
                             <ul class="dropdown-menu mt-[11px] rounded-0" aria-labelledby="dropdownMenuLink">
-                                {!! $menu->link !!}
+                                {!! $menu->{'link_'.app()->getLocale()} !!}
                             </ul>
                         </li>
                     @endforeach
@@ -186,65 +186,10 @@
             @yield('content')
 
 
-{{--      third column   NAVIGATION           --}}
-                    <div class="w-auto    ">
-                        <section class=" bg-gray-50 text-[#2f506c] p-3 pt-[13px] pl-0">
-                            <a class="font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[13px] px-3">Navigation</a>
-                            <ul class="font5 text-[#6c9abf] pl-4 flex flex-col w-[150px] ">
-                                @foreach($sidemenu as $side)
-                                <li class="py-1  inline-flex items-center "> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short mr-1" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                                        </svg><a href="{{$side->link}}">{{ ucfirst( $side->{'title_'.app()->getLocale()} ) }}</a></li>
-                                @endforeach
-                            </ul>
-                        </section>
-
-{{--                        MOODLE LOGIN--}}
-                        <section class=" bg-gray-50 text-[#2f506c] p-3 pt-[14px] pl-0 mt-4 h-[250px]">
-
-                                <a class="font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[15px] px-3 ">Moodle</a>
-
-                                <div class="flex inline-flex items-center ">
-                                    <div class="pl-4 m-0 ">Login</div>
-                                    <img src="{{env('APP_URL')}}\img\Moodle-Logo.png" class="w-20 h-auto mb-1 ">
-                                </div>
-
-
-
-                            <form class="mx-4  mt-0  flex flex-col justify-end" action="{{url('/mlogin')}}" method="POST" enctype="multipart/form-data">
-                               @csrf
-                                @method('POST')
-
-                                    <x-input name="login"  />
-                                    <x-input name="pwd" />
-{{--                                <x-login></x-login>--}}
-
-
-
-                                <x-green-button type="submit" value="sign in" class=""></x-green-button>
-                            </form>
-                        </section>
-
-
-{{--                        DIRECTORS DETAILS--}}
-                        <section class=" bg-gray-50 text-[#2f506c] p-3 pt-[13px] pl-0 mt-4 h-[250px]">
-                            <a class="font3 text-[#2f506c] text-lg border-t-2 border-[#6091ba] pt-[15px] px-3 ">Direction</a>
-                            @foreach($director as $dir)
-                                <div class="pl-4">{{$dir['name']}} {{ $dir['surname']}}</div>
-                                <img src="{{env('APP_URL')}}/img/teachers/{{$dir['img']}}" class="w-[160px] h-auto pl-4 pt-4">
-                            @endforeach
-                        </section>
-                    </div>
-               </main>
 
 
 
 
-
-
-
-{{--                    TEACHERS CAROUSEL--}}
-{{--<x-carousel-component :teachers="$teachers" />--}}
 
 {{--                </section>--}}
 
@@ -257,7 +202,7 @@
 
                         <div class="flex flex-col mt-16 border mx-8">
                             @foreach($services as $service )
-                                <p class="text-sm p-1"><a href="{{route('services.show', $service["id"])}}">- {{$service['title']}}</a></p>
+                                <p class="text-sm p-1"><a href="{{route('services.show', $service->id)}}">- {{ $service->{'title_'.app()->getLocale()} }}</a></p>
                             @endforeach
                         </div>
                     </div>

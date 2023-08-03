@@ -19,16 +19,17 @@ class PagesController extends Controller
 {
     public function index()
     {
-        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->get();
-        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->get();
+        $topmenu = Page::where('topmenu', 1)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $sidemenu = Page::where('topmenu', 0)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $midmenu = Midmenu::orderby('item_order')->select(['title_en','title_fr', 'link_en', 'link_fr'])->get();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->get();
+
         $timetable = Timetable::orderby('timetable')->take(4)->pluck('timetable', 'fromto')->toArray();
         $news = Novita::latest()->take(5)->get()->toArray();
         $teachers = Teacher::orderBy('surname')->get()->toArray();
         $director = Employee::where('id', 1)->get()->toArray();
-        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->select(['title_en', 'title_fr', 'id'])->get();
         //echo '<pre>';
         //print_r($director);
         return view('layouts.default.main')->with([
@@ -50,14 +51,14 @@ class PagesController extends Controller
 
     public function about()
     {
-        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
-        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $topmenu = Page::where('topmenu', 1)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $sidemenu = Page::where('topmenu', 0)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $midmenu = Midmenu::orderby('item_order')->select(['title_en','title_fr', 'link_en', 'link_fr'])->get();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
-        $about = Page::find(1)->pluck('content')->toArray();
+        $about = Page::find(1)->select(['content_en', 'content_fr'])->get();
         $director = Employee::where('id', 1)->get()->toArray();
-        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->select(['title_en', 'title_fr', 'id'])->get();
         //print_r($about);
         return view('layouts.default.about')->with([
             'topmenu' => $topmenu,
@@ -74,21 +75,21 @@ class PagesController extends Controller
 
     public function history()
     {
-        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
-        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $topmenu = Page::where('topmenu', 1)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $sidemenu = Page::where('topmenu', 0)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $midmenu = Midmenu::orderby('item_order')->select(['title_en','title_fr', 'link_en', 'link_fr'])->get();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
-        $history = Page::find(1)->pluck('content')->toArray();
+        $text = Page::find(1)->select(['content_en', 'content_fr', 'title_en', 'title_fr'])->get();
         $director = Employee::where('id', 1)->get()->toArray();
-        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->select(['title_en', 'title_fr', 'id'])->get();
         //print_r($about);
         return view('layouts.default.history')->with([
             'topmenu' => $topmenu,
             'socials' => $socials,
             'contact' => $contact,
             'midmenu' => $midmenu,
-            'history' => $history,
+            'text' => $text,
             'sidemenu' => $sidemenu,
             'director' => $director,
             'services' => $services,
@@ -98,14 +99,14 @@ class PagesController extends Controller
 
     public function advantages()
     {
-        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
-        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $topmenu = Page::where('topmenu', 1)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $sidemenu = Page::where('topmenu', 0)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $midmenu = Midmenu::orderby('item_order')->select(['title_en','title_fr', 'link_en', 'link_fr'])->get();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
-        $advantages = Page::where('id', 2)->pluck('content')->toArray();
+        $advantages = Page::where('id', 2)->select(['content_en', 'content_fr', 'title_en', 'title_fr'])->get();
         $director = Employee::where('id', 1)->get()->toArray();
-        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->select(['title_en', 'title_fr', 'id'])->get();
         //print_r($topmenu);
         return view('layouts.default.advantages')->with([
             'topmenu' => $topmenu,
@@ -122,14 +123,14 @@ class PagesController extends Controller
 
     public function program()
     {
-        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
-        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $topmenu = Page::where('topmenu', 1)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $sidemenu = Page::where('topmenu', 0)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $midmenu = Midmenu::orderby('item_order')->select(['title_en','title_fr', 'link_en', 'link_fr'])->get();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link',);
-        $program = Page::where('id', 3)->pluck('content')->toArray();
+        $program = Page::where('id', 3)->select(['content_en', 'content_fr', 'title_en', 'title_fr'])->get();
         $director = Employee::where('id', 1)->get()->toArray();
-        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->select(['title_en', 'title_fr', 'id'])->get();
         //print_r($topmenu);
         return view('layouts.default.program')->with([
             'topmenu' => $topmenu,
@@ -146,14 +147,15 @@ class PagesController extends Controller
 
     public function partners()
     {
-        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
-        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $topmenu = Page::where('topmenu', 1)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $sidemenu = Page::where('topmenu', 0)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $midmenu = Midmenu::orderby('item_order')->select(['title_en','title_fr', 'link_en', 'link_fr'])->get();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
-        $text = Page::where('id', 7)->pluck('content')->toArray();
+
+        $text = Page::where('id', 7)->select(['content_en', 'content_fr', 'title_en', 'title_fr'])->get();
         $director = Employee::where('id', 1)->get()->toArray();
-        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->select(['title_en', 'title_fr', 'id'])->get();
         //print_r($topmenu);
         return view('layouts.default.partners')->with([
             'topmenu' => $topmenu,
@@ -170,14 +172,14 @@ class PagesController extends Controller
 
     public function suppliers()
     {
-        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
-        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $topmenu = Page::where('topmenu', 1)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $sidemenu = Page::where('topmenu', 0)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $midmenu = Midmenu::orderby('item_order')->select(['title_en','title_fr', 'link_en', 'link_fr'])->get();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
-        $text = Page::where('id', 9)->pluck('content')->toArray();
+        $text = Page::where('id', 9)->select(['content_en', 'content_fr', 'title_en', 'title_fr'])->get();
         $director = Employee::where('id', 1)->get()->toArray();
-        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->select(['title_en', 'title_fr', 'id'])->get();
         //print_r($topmenu);
         return view('layouts.default.suppliers')->with([
             'topmenu' => $topmenu,
@@ -205,14 +207,14 @@ class PagesController extends Controller
 
     public function moodle()
     {
-        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
-        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $topmenu = Page::where('topmenu', 1)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $sidemenu = Page::where('topmenu', 0)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $midmenu = Midmenu::orderby('item_order')->select(['title_en','title_fr', 'link_en', 'link_fr'])->get();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->pluck('title', 'link');
         $text = Page::where('id', 7)->pluck('content')->toArray();
         $director = Employee::where('id', 1)->get()->toArray();
-        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->select(['title_en', 'title_fr', 'id'])->get();
         //print_r($topmenu);
         return view('layouts.default.moodle')->with([
             'topmenu' => $topmenu,

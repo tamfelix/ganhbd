@@ -1,7 +1,9 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +29,8 @@ Route::get('/inner', function () {
 
 //auth for dashboard
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-    Route::resource('posts', \App\Http\Controllers\MessagesController::class)->only('create', 'store');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::resource('/dashboard/messages', MessagesController::class);
 });
 
 //Route::get('/dashboard', function () {

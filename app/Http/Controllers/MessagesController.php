@@ -16,11 +16,15 @@ class MessagesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $messages = Message::select(['subject', 'created_at'])->latest()->take(10)->get();
+       // dd($messages);
+        return view('layouts.admin.messages')->with([
+            'messages' => $messages,
+        ]);
     }
 
     /**
@@ -30,14 +34,14 @@ class MessagesController extends Controller
      */
     public function create()
     {
-        $topmenu = Page::where('topmenu', 1)->orderby('page_order')->pluck('link', 'title')->toArray();
-        $sidemenu = Page::where('topmenu', 0)->orderby('page_order')->pluck('link', 'title')->toArray();
+        $topmenu = Page::where('topmenu', 1)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $sidemenu = Page::where('topmenu', 0)->select(['title_en', 'title_fr', 'link'])->orderby('page_order')->get();
+        $midmenu = Midmenu::orderby('item_order')->select(['title_en','title_fr', 'link_en', 'link_fr'])->get();
         $socials = Social::orderby('icon_order')->get()->toArray();
         $contact = Contact::where('id', 1)->get()->toArray();
-        $midmenu = Midmenu::orderby('item_order')->get();
-        $text = Page::where('id', 16)->pluck('content')->toArray();
+        $text = Page::where('id', 16)->select(['content_en', 'content_fr', 'title_en', 'title_fr'])->get();
         $director = Employee::where('id', 1)->get()->toArray();
-        $services = Service::orderBy('created_at')->take(10)->get()->toArray();
+        $services = Service::orderBy('created_at')->take(10)->select(['title_en', 'title_fr', 'id'])->get();
 
         //print_r($text);
 
@@ -67,7 +71,7 @@ class MessagesController extends Controller
 //        $request->validate(['email'=>'min:7']);
 //        $request->validate(['content'=>'min:7']);
 
-        $message  = Message::create($request->validated());
+        $message  = Message::create($request->all());
         //$message->save();
         //echo ('<pre>');
         //print_r($message);
