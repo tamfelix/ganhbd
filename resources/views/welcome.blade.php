@@ -78,6 +78,33 @@
                     </div>
                 </div>
 
+
+                <nav>
+                    <div class="bg-red-200 text-xl rounded-full w-[200px] h-[200px] m-auto items-center flex flex-col">
+                        <p class=" text-center items-center   my-auto">GAN</p>
+                        <p class="text-center items-center px-3 my-auto">place where your kid feels safe</p>
+{{--                        <svg--}}
+{{--                                viewBox="0 0 100 100"--}}
+{{--                                xmlns="http://www.w3.org/2000/svg"--}}
+{{--                        >--}}
+{{--                            <path--}}
+{{--                                    id="circlePath"--}}
+{{--                                    d="--}}
+{{--                                          M 10, 50--}}
+{{--                                          a 40,40 0 1,1 80,0--}}
+{{--                                          40,40 0 1,1 -80,0--}}
+{{--                                        "--}}
+{{--                            />--}}
+{{--                            <text>--}}
+{{--                                <textPath href="#circlePath">--}}
+{{--                                    Your text here!--}}
+{{--                                </textPath>--}}
+{{--                            </text>--}}
+{{--                        </svg>--}}
+                    </div>
+                </nav>
+
+
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="p-6">
