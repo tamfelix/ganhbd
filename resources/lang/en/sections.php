@@ -8,4 +8,6 @@ return [
     'register' => 'Enrollment and visits',
     'parents' => 'To Parents',
     'guideline' => 'Parents guidebook',
+    'events' => 'Events',
+    'anouncements' => 'Anouncements'
 ];

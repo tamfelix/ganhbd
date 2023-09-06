@@ -7,5 +7,7 @@ return [
     'activities' => 'Activités',
     'register' => "Demandes d'inscriptions et visites",
     'parents' => 'Parents',
-    'guideline' => 'Livret de parents'
+    'guideline' => 'Livret de parents',
+    'events' => 'Evenements',
+    'anouncements' => 'Annonces',
 ];

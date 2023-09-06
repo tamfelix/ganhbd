@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activitie;
+use App\Models\Annonce;
 use App\Models\Classe;
+use App\Models\Event;
 use App\Models\Novita;
 use App\Models\Photo;
 use Illuminate\Http\Request;
@@ -21,6 +24,9 @@ class PagesController extends Controller
     public $news;
     public $classes;
     public $about;
+    public $events;
+    public $activities;
+    public $annonces;
 
     public function __construct(){
         $this->topmenu = Page::where('topmenu', 1)->get()->toArray();
@@ -28,7 +34,9 @@ class PagesController extends Controller
         $this->news = Novita::latest()->get()->toArray();
         $this->classes = Classe::all()->toArray();
         $this->about = Page::where('id', 1)->get()->toArray();
-
+        $this->events = Event::latest()->get()->toArray();
+        $this->activities = Activitie::latest()->get()->toArray();
+        $this->annonces = Annonce::latest()->get()->toArray();
     }
     public function index()
     {
@@ -38,7 +46,9 @@ class PagesController extends Controller
             'news' => $this->news,
             'classes' => $this->classes,
             'about' => $this->about,
-
+            'events' => $this->events,
+            'activities' => $this->activities,
+            'annonces' => $this->annonces,
         ]);
 
     }

@@ -90,7 +90,7 @@
 {{--                CIRCLE LOGO BANNER--}}
 
                 <nav>
-                    <div class="bg-red-200  text-xl rounded-full w-[200px] h-[200px] m-auto items-center flex flex-col">
+                    <a href="{{ env('APP_URL') }}"><div class="bg-red-200  text-xl rounded-full w-[200px] h-[200px] m-auto items-center flex flex-col">
                         <p class=" text-center items-center   my-auto">GAN</p>
                         <p class="text-center items-center px-3 my-auto">place where your kid feels safe</p>
 {{--                        <svg--}}
@@ -111,13 +111,27 @@
 {{--                                </textPath>--}}
 {{--                            </text>--}}
 {{--                        </svg>--}}
-                    </div>
+                        </div></a>
                 </nav>
 
 {{--MAIN SECTIONS--}}
 
 
                 @yield('content')
+
+                {{--ANNOUNCEMENTS--}}
+                @php $title = __('sections.anouncements'); $link = route('photos.index'); @endphp
+                <x-header :title="$title" :link="$link" />
+
+
+                <div class="flex inline-flex items-center px-4 m-auto">
+                    @foreach($annonces as $item)
+                        <a href="#">
+                            <img class="h-[300px] frame" src="{{ env('APP_URL').'/'.$item['img'] }}">
+                        </a>
+                    @endforeach
+                </div>
+                </div>
 
                 {{--PHOTOS--}}
                 @php $title = __('sections.gallery'); $link = route('photos.index'); @endphp
@@ -141,6 +155,23 @@
                             <div class="bg-yellow-100 shadow w-[200px] h-[200px] text-center m-2 pt-4 px-2">{{ $new['title_'.app()->getLocale()] }}</div>
                     @endforeach
                     </div>
+                </div>
+
+
+                {{--                EVENTS--}}
+                @php $title = __('sections.events'); $link = route('events.index'); @endphp
+                <x-header :title="$title" :link="$link" />
+                <div class="flex inline-flex  mx-auto h-full  py-4">
+                    @foreach($events as $new)
+                        <div class="flex flex-col items-center shadow  text-center m-2 pt-4 px-2">
+                            <h3 class="w-[150px]">{{ $new['title_'.app()->getLocale()] }}</h3>
+                            @if($new['img'])
+                                <a><img class="h-[200px] frame" src=" {{ env('APP_URL').'/'.$new['img'] }} "></a>
+                            @endif
+                        </div>
+
+                    @endforeach
+                </div>
                 </div>
 
                 {{--PROGRAM--}}
@@ -167,8 +198,13 @@
 {{--ACTIVITIES--}}
                 @php $title = __('sections.activities'); $link = route('activities.index'); @endphp
                 <x-header :title="$title" :link="$link" />
-                    <div class="flex h-full  py-4   ">
-                        ...
+                    <div class="flex   mx-auto h-full  py-4   ">
+                        @foreach($activities as $item)
+                           <div class="flex flex-col p-4">
+                                <h3>{{ $item['title_'.app()->getLocale()] }}</h3>
+                                <img src="{{ env('APP_URL'.'/'.$item['img']) }}">
+                           </div>
+                        @endforeach
                     </div>
                 </div>
 

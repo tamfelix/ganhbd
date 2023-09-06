@@ -2,7 +2,8 @@
 @extends('welcome')
 
 @section('content')
+<div class="h-screen">
 
-
-    some
+    <img src="{{ $event[0]['img'] }}">
+</div>
 @endsection
