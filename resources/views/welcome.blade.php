@@ -127,7 +127,7 @@
                 <div class="flex inline-flex items-center px-4 m-auto">
                     @foreach($annonces as $item)
                         <a href="#">
-                            <img class="h-[300px] frame" src="{{ env('APP_URL').'/'.$item['img'] }}">
+                            <img class="h-[300px] my-12 frame" src="{{ env('APP_URL').'/'.$item['img'] }}">
                         </a>
                     @endforeach
                 </div>
@@ -178,9 +178,9 @@
 
                 @php $title = __('sections.program'); $link = url('program'); @endphp
                 <x-header :title="$title" :link="$link" />
-                    <div class="flex flex-col  mx-auto h-full  py-4">
+                    <div class="flex flex-col  mx-auto h-full  my-4">
                         @foreach($classes as $item)
-                            <a href="{{ route('classes.show', $item['id']) }}">- {{  $item['title_fr'] }}</a>
+                            <a clas="" href="{{ route('classes.show', $item['id']) }}">- {{  $item['title_fr'] }}</a>
                         @endforeach
                     </div>
                 </div>
@@ -190,7 +190,7 @@
 
                 @php $title = __('sections.about'); $link = url('program'); @endphp
                 <x-header :title="$title" :link="$link" />
-                    <div class="h-full py-4 px-12">
+                    <div class="h-full py-8 px-12">
                         {!! $about[0]['content_'.app()->getLocale()] !!}
                     </div>
                 </div>
